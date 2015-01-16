@@ -1,24 +1,29 @@
 <?php
+
 class Clientes
 {
-    protected  $propriedades = array (
-    	'nome' => null,
+
+    protected $propriedades = array(
+        'nome' => null,
         'email' => null
     );
-    
+
     public function __set($propriedade, $valor)
     {
-        if(array_key_exists($propriedade, $this->propriedades)) {
+        if (array_key_exists($propriedade, $this->propriedades)) {
             $this->propriedades[$propriedade] = $valor;
         }
     }
-    
-    public function __get($propriedades)
+
+    public function __get($propriedade)
     {
-        if(array_key_exists($propriedade, $this->propriedades)) {
-            return $this->propriedades;
-        }
+        if (array_key_exists($propriedade, $this->propriedades)) {
+            return $this->propriedades[$propriedade];
+        } else {
+            echo "$propriedade nao existe";
+            exit();
     }
+}
 }
 
 $cliente = new Clientes();

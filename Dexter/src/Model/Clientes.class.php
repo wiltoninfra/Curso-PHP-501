@@ -3,7 +3,7 @@ namespace Model;
 
 class Clientes extends AbstractModel
 {
-
+    protected $tabela = 'clientes';
     protected $propriedades = array(
         'id'            => null,
         'cpf_cnpj'      => null,

@@ -3,7 +3,7 @@ namespace Model;
 
 class Funcionarios extends AbstractModel
 {
-
+    protected $tabela = 'funcionarios';
     protected $propriedades = array(
         
         'id'        => null,

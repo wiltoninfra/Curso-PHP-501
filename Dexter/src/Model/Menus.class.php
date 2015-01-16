@@ -3,6 +3,7 @@ namespace Model;
 
 class Menus extends AbstractModel
 {
+    protected $tabela = 'menus';
     protected $propriedades = array (
     	
         'id'        => null,
