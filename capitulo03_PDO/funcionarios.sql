@@ -1,18 +1,15 @@
---Tabela no Postgres
-
 CREATE TABLE funcionarios(
 id serial primary key,
 nome varchar(100),
 email varchar(100),
-senha varchar(15));
+senha varchar(15)
+);
 
 
-
---Tabela no Mysql
-
+Tabela no MySql
 
 CREATE TABLE funcionarios(
-id int primary key auto-increment,
+id int primary key auto_increment,
 nome varchar(100),
 email varchar(100),
 senha varchar(15)
