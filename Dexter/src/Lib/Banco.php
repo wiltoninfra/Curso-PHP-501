@@ -7,9 +7,14 @@ namespace Lib;
 {
 
     protected $conn;
+    
+    use Mensagem;
+    
     // protected $senha;
     // protected $host;
     // protected $databse;
+    
+   
     final public function conectar()
     
     {

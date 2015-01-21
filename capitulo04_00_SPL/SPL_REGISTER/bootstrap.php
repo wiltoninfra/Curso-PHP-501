@@ -1,13 +1,14 @@
 <?php
 function carregarClasse($class)
 {
+       
     $classe = str_replace('\\', '/', $classe);
     if(file_exists("$classe.php")) {
-        throw new Exception('Classe nao encontrada');
+        throw new Exception("Classe $classe nao encontrada");
         return;
     }
     
-    require_once '$classe.php';
+    require_once "$classe.php";
 }
 
-slp_autoload_register('carregarClasse');
+spl_autoload_register('carregarClasse');
