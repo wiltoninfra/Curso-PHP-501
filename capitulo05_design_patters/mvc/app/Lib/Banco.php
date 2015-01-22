@@ -17,8 +17,8 @@ class Banco
         $dsn = "$config[driver]:host=$config[host];dbname=$config[dbname]";
         $username = $config['username'];
         $passwd = $config['passwd'];
-        $this->conn = new PDO($dsn, $username, $passwd);
-        $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_SILENT);
+        $this->conn = new \PDO($dsn, $username, $passwd);
+        $this->conn->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_SILENT);
     }
 
     protected function getConn()
@@ -30,7 +30,7 @@ class Banco
     {
         $sql = "SELECT * FROM $this->tabela";
         $query = $this->conn->query($sql);
-        $registros = $query->fetchAll(PDO::FETCH_ASSOC);
+        $registros = $query->fetchAll(\PDO::FETCH_ASSOC);
         return $registros;
     }
 
@@ -38,7 +38,7 @@ class Banco
     {
         $sql = "SELECT * FROM $this->tabela WHERE $condicao";
         $query = $this->conn->query($sql);
-        $registro = $query->fetch(PDO::FETCH_ASSOC);
+        $registro = $query->fetch(\PDO::FETCH_ASSOC);
         return $registro;
     }
 
