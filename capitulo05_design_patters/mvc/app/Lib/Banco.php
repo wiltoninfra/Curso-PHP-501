@@ -1,9 +1,13 @@
 <?php
 
+
+namespace Lib;
+
+
 class Banco
 {
     // onexao com banco
-    private $conn;
+    protected $conn;
 
     protected $tabela = null;
 
@@ -14,7 +18,7 @@ class Banco
         $username = $config['username'];
         $passwd = $config['passwd'];
         $this->conn = new PDO($dsn, $username, $passwd);
-        $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_SILENT);
     }
 
     protected function getConn()
@@ -84,7 +88,10 @@ class Banco
 }
 
 
-print_r($dbh->errorInfo());
+$conexta = new Banco();
+$banco->conectar();
+
+var_dump($banco);
 
 
 

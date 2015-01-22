@@ -1,8 +1,8 @@
 <?php
 $config = array(
-    'driver'    => 'pgsql',
+    'driver'    => 'mysql',
     'host'      => 'localhost',
-    'dbname'    => 'dexter',
+    'dbname'    => 'capitulopdo',
     'username'  => 'dexter',
     'passwd'    => '123456'
 );

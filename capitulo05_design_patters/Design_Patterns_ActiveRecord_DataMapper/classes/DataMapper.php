@@ -10,7 +10,7 @@ class DataMapper
     public function __construct($tabela)
     {
         $this->tabela = $tabela;
-        $banco        = Banco::instaciar();
+        $banco        = Banco::instanciar();
         $this->conexao = $banco->getConn();     
     }
     
@@ -21,6 +21,9 @@ class DataMapper
         $sql = "SELECT * FROM $this->tabela";
         $query = $this->conexao->query($sql);
         $registros = $query->fetchAll(PDO::FETCH_ASSOC);
+        //$objetos = array();
+        //while ($objeto = $query->)
+        
         return $registros;
     }
 

@@ -44,7 +44,8 @@
         if ($_POST) {
             include 'classes/includes.php';
             $funcionarios = new Funcionarios();
-            if($funcionarios->inserirFuncionario($_POST)){
+            $funcionarios-setDados($_POST);
+             if($funcionarios->salvar($_POST)){
                 header('location:index.php');
             }
         }

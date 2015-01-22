@@ -78,6 +78,44 @@ class Funcionarios extends Banco implements Iterator
                 }
     
     }
+    
+    public function salvar()
+    {
+        $dados = $this->getDados ();
+        
+        if (isset ($this->id)) {
+            $this->alterarFuncionario($dados, $this->id);
+            return $this;
+        }
+        
+        $this->inserirFuncionario($dados);
+        
+        return $this;
+    }
+    
+    private function getDados()
+    {
+        $dados = array(
+        	
+            'nome'  => $this->nome,
+            'email' => $this->email,
+            'senha'  => $this->senha             
+                       
+        );
+    } 
+    
+    public function setDados (array $dados)
+    {
+        $this->id = isset($dados['id']) ? $dados['id'] : null;
+        $this->nome = isset($dados['nome']) ? $dados['nome'] : null;
+        $this->email = isset($dados['email']) ? $dados['email'] : null;
+        if (isset($dados['senha'])) {
+            $this->senha = md5($dados['senha']);
+        } else {
+            unset($this->senha);
+        }
+        
+    }
         
     public function listarFuncionarios()
     {
@@ -89,12 +127,12 @@ class Funcionarios extends Banco implements Iterator
         return $this->buscarRegistro("id = $id");
     }
 
-    public function inserirFuncionario(array $dados)
+  protected public function inserirFuncionario(array $dados)
     {
         return $this->inserir($dados);
     }
 
-    public function alterarFuncionario(array $dados, $id)
+  protected public function alterarFuncionario(array $dados, $id)
     {
         return $this->alterar($dados, $id);
     }

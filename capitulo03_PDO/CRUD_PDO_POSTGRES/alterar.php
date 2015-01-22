@@ -15,7 +15,8 @@
         }
         
         if ($_POST) {
-            if($funcionarios->alterarFuncionario($_POST, $id)){
+            $funcionarios->SetDados($_POST);
+            if ($funcionarios->salvar()){    
                 header('location:index.php');
             }
         }

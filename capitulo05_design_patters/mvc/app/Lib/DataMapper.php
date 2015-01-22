@@ -1,44 +1,42 @@
 <?php
+namespace Lib;
 
-class Banco
+class DataMapper
 {
-    // onexao com banco
-    private $conn;
 
+    
+    private $conexao;
     protected $tabela = null;
-
-    public function __construct()
+    
+    public function __construct($tabela)
     {
-        global $config;
-        $dsn = "$config[driver]:host=$config[host];dbname=$config[dbname]";
-        $username = $config['username'];
-        $passwd = $config['passwd'];
-        $this->conn = new PDO($dsn, $username, $passwd);
-        $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $this->tabela = $tabela;
+        $banco        = Banco::instanciar();
+        $this->conexao = $banco->getConn();     
     }
-
-    protected function getConn()
-    {
-        return $this->conn;
-    }
-
-    protected function listar()
+    
+    
+   
+    public  function listar()
     {
         $sql = "SELECT * FROM $this->tabela";
-        $query = $this->conn->query($sql);
+        $query = $this->conexao->query($sql);
         $registros = $query->fetchAll(PDO::FETCH_ASSOC);
+        //$objetos = array();
+        //while ($objeto = $query->)
+        
         return $registros;
     }
 
-    protected function buscarRegistro($condicao)
+    public function buscarRegistro($condicao)
     {
         $sql = "SELECT * FROM $this->tabela WHERE $condicao";
-        $query = $this->conn->query($sql);
-        $registro = $query->fetch(PDO::FETCH_ASSOC);
+        $query = $this->conexao->query($sql);
+        $registro = $query->fetchObject(ucfirst($this->tabela));
         return $registro;
     }
 
-    protected function inserir(array $dados)
+    public function inserir(array $dados)
     {
         // NSERT INTO tabela(campo1, campo2) VALUES('VALOR1', 'VALOR2');
         foreach ($dados as $campo => $valor) {
@@ -54,7 +52,7 @@ class Banco
         return $statement->execute(array_values($dados));
     }
 
-    protected function alterar(array $dados, $id)
+    public  function alterar(array $dados, $id)
     {
         // PDATE TABELA SET CAMPO1 = 'VALOR', CAMPO2 = 'VALOR' WHERE CONDICAO
         foreach ($dados as $campo => $valor) {
@@ -73,7 +71,7 @@ class Banco
         return $statement->execute($valores);
     }
 
-    protected function excluir($id)
+    public  function excluir($id)
     {
         $sql = "DELETE FROM $this->tabela WHERE id = ?";
         $statement = $this->conn->prepare($sql);
@@ -84,7 +82,7 @@ class Banco
 }
 
 
-print_r($dbh->errorInfo());
+
 
 
 
