@@ -4,12 +4,15 @@ namespace View;
 
 class View
 {
-    public static function carregar($template, $dados = null)
+    public static function carregar($template, $tipo, $dados = null)
     {
-        include __DIR__ . "/../../templates/admin";
-        include __DIR__ . "/../../templates/front";
-        include __DIR__ . "/../../templates/_cabecalho.tpl.php";
-        include __DIR__ . "/../../templates/_rodape.tpl.php";
+        //echo "Template: $template";
+        //echo '<br>Tipo: ' . $tipo;
+        //exit();
+        
+        include __DIR__ . "/../../templates/$tipo/_cabecalho.tpl.php";
         include __DIR__ . "/../../templates/$template.tpl.php";
+        include __DIR__ . "/../../templates/$tipo/_rodape.tpl.php";
     }
 }
+

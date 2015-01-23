@@ -1,3 +1,4 @@
 <?php
-// Inclusao do arquivo de bootstrap
-
+use Controller\Controller;
+require 'bootstrap.php';
+new Controller('admin');

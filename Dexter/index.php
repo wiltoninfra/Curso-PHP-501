@@ -2,4 +2,4 @@
 
 use Controller\Controller;
 require 'bootstrap.php';
-new Controller();
+new Controller('front');

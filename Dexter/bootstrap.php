@@ -5,6 +5,7 @@ require 'config/config.php';
 define('PATH', 'public/');
 
 
+
 function carregarClasse($classe)
 {
     $classe = str_replace('\\', DIRECTORY_SEPARATOR, $classe);
